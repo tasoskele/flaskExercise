@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{%- for user in users %}
+
+Hello {{ user.name }} {{ user.surname }} <br>
+
+{% endfor %}
+
+{% endblock %}

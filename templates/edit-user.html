@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block body %}
+
+<h2>Now editing: {{ user.name }} {{ user.surname }}</h2>
+
+<form method="post">
+    {{ render_form(form) }}
+</form>
+
+{% endblock %}
