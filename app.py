@@ -28,9 +28,6 @@ class editForm(FlaskForm):
     surname = StringField('surname', validators=[InputRequired(), Length(min=3, max=50)])
     submit = SubmitField('Update')
 
-#db = SQLAlchemy(app)
-#app.app_context().push()
-
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -78,26 +75,18 @@ def user(user_id):
         #return render_template("edit-user.html", user=user)
     else:
         user = User.query.get(user_id)
-        
+
         return render_template("edit-user.html", form=form, user=user)
 
-#@app.route("/delete")
-#def deleteUser():
-    if request.method == "DELETE":
-        db.session.delete(User.query.get(user_id))
-        db.session.commit()
-        return redirect(url_for("users"))
-#    users = User.query.all()
-#
-#    return render_template("delete.html", deleteUser=users)
+@app.route("/delete")
+def deleteUsers():
 
-    if request.method == "POST":
-        if form.validate_on_submit():
-            newUser = User(name=request.form["name"], surname=request.form["surname"])
-            db.session.add(newUser)
-            db.session.commit()
-            return redirect(url_for("users"))
-        else:
-            flash("Not valid data", "error")
+    users = User.query.all()
 
-    return render_template("register.html", form=form)
+    return render_template("delete.html", deleteUsers=users)
+
+@app.route("/delete/<int:user_id>")
+def delete(user_id):
+    db.session.delete(User.query.get(user_id))
+    db.session.commit()
+    return redirect(url_for("deleteUsers"))

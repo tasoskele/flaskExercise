@@ -2,9 +2,9 @@
 
 {% block body %}
 
-{%- for user in editingUsers %}
+{%- for user in deleteUsers %}
 
-{{ user.name }} <a href="" class="btn btn-primary" role="button" >Delete</a>
+{{ user.name }} {{user.surname}} <a href="/delete/{{ user.id }}" class="btn btn-danger" role="button" >Delete</a>
 
 <br>
 
