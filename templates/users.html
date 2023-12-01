@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
+{% from 'bootstrap5/table.html' import render_table %}
 
 {% block body %}
+
+{{ render_table(users) }}
+
+
 
 {%- for user in users %}
 
 Hello {{ user.name }} {{ user.surname }} <br>
+
 
 {% endfor %}
 

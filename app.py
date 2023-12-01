@@ -64,7 +64,6 @@ def user(user_id):
     form = editForm()
 
     if request.method == "POST":
-        # TODO validate form
         user = User.query.get(user_id)
         user.name = request.form["name"]
         user.surname = request.form["surname"]
@@ -72,7 +71,6 @@ def user(user_id):
         db.session.commit()
 
         return redirect(url_for("users"))
-        #return render_template("edit-user.html", user=user)
     else:
         user = User.query.get(user_id)
 
